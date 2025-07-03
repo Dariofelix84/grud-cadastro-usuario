@@ -34,8 +34,14 @@ public class UsuarioController {
     @PutMapping
     public ResponseEntity<Void> atualizarUsuarioPorId(@RequestParam Integer id,
                                                       @RequestBody Usuario usuario) {
-        usuarioService.atualizarUsuarioPorEmail(id, usuario);
+        usuarioService.atualizarUsuarioPorId(id, usuario);
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/update-by-email")
+    public ResponseEntity<Void> atualizarUsuarioPorEmail(@RequestParam String email,
+                                                      @RequestBody Usuario usuario) {
+        usuarioService.atualizarUsuarioPorEmail(email, usuario);
+        return ResponseEntity.ok().build();
+    }
 }

@@ -37,9 +37,22 @@ public class UsuarioService {
 
     /*Melhor maneira é com MapStruct
     Desta maneira só atualiza o que for passado, e não perde nenhum dado da coluna do BD*/
-    public void atualizarUsuarioPorEmail(Integer id, Usuario usuario) {
+    public void atualizarUsuarioPorId(Integer id, Usuario usuario) {
         Usuario usuarioEntity = repository.findById(id).orElseThrow(() ->
                 new RuntimeException("Usuário não encontrado"));
+        Usuario usuarioAtualizado = Usuario.builder()
+                .email(usuario.getEmail() != null ? usuario.getEmail() : usuarioEntity.getEmail())
+                .nome(usuario.getNome() != null ? usuario.getNome() : usuarioEntity.getNome())
+                .id(usuarioEntity.getId())
+                .build();
+
+        repository.saveAndFlush(usuarioAtualizado);
+    }
+
+    public void atualizarUsuarioPorEmail(String email, Usuario usuario) {
+        Usuario usuarioEntity = repository.findByEmail(email).orElseThrow(() ->
+                new RuntimeException("Usuário não encontrado"));
+
         Usuario usuarioAtualizado = Usuario.builder()
                 .email(usuario.getEmail() != null ? usuario.getEmail() : usuarioEntity.getEmail())
                 .nome(usuario.getNome() != null ? usuario.getNome() : usuarioEntity.getNome())
