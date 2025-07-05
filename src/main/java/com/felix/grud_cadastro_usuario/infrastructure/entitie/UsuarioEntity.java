@@ -1,4 +1,4 @@
-package com.felix.grud_cadastro_usuario.infrastructure.entitys;
+package com.felix.grud_cadastro_usuario.infrastructure.entitie;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @Table(name = "usuario")
 @Entity
-public class Usuario {
+public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -20,4 +20,7 @@ public class Usuario {
 
     @Column(name = "nome")
     private String nome;
+
+    @Column(name = "nome" )
+    private String senha;
 }
