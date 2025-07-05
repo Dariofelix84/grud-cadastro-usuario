@@ -43,5 +43,6 @@ public class UsuarioController {
                                                       @RequestBody Usuario usuario) {
         usuarioService.atualizarUsuarioPorEmail(email, usuario);
         return ResponseEntity.ok().build();
+
     }
 }
